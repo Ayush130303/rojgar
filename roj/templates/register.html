@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Rojgar</title>
+    <link rel="stylesheet" href="{% static 'auth.css' %}">
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Create Your Account</h2>
+        {% if messages %}
+            {% for message in messages %}
+                {% if 'info' in message.tags %}
+                    <h3 style="color: brown;">{{ message }}</h3>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password1" placeholder="Password" required>
+            <input type="password" name="password2" placeholder="Confirm Password" required>
+            <button type="submit">Register</button>
+            <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+<header class="header">
+    <div class="logo">Rojgar</div>
+
+    <div class="search-container">
+        <input type="search" id="search" placeholder="Search for jobs" />
+        <button type="submit" aria-label="Search">&#128269;</button>
+    </div>
+    <button id="menuToggle" class="hamburger" aria-label="Toggle menu" onclick="openmenu()">
+        &#9776;
+    </button>
+
+    <nav id="mainMenu" class="menu">
+        <button onclick="closemenu()" class=" closebtn">X</button>
+        <div class="prof">
+            <img src="{% static 'photos/default.jpg' %}" alt="userimg" srcset="">
+            <h2 class="username">{% if user.is_authenticated %}
+                {{user.username}}
+                {% else %}
+                    Hii,Guest!
+                {% endif %}
+            </h2>
+        </div>
+        <ul>
+            <li><a href="#profile">Jobs</a></li>
+            <li><a href="#dashborad">Contact</a></li>
+            <li><a href="{% url 'logout' %}">logout</a></li>
+            <li><a href="#myconnection">myconnection</a></li>
+        </ul>
+    </nav>
+</header>
+<script>
+    const x=document.getElementById("mainMenu")
+    function openmenu(){
+        x.style.transform='translate(0)'
+    }
+    function closemenu(){
+        x.style.transform='translate(100%)'
+    }
+</script>
