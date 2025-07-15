@@ -1,6 +1,33 @@
-<div class="conatiner">
-    <h2>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi omnis doloribus assumenda architecto ratione dignissimos repellendus totam distinctio! Harum et odio esse soluta tempora placeat in repellat commodi delectus nisi.
-        
-    </h2>
+<div class="container">
+    {% for job in jobs %}
+    <div class="cards">
+        <div class="howtouse card">
+        <h3>{{ job.title }} at {{ job.company }}</h3>
+        <ol class="">
+            {% for tag in job.tags %}
+                <li>{{ tag }}</li>
+            {% endfor %}
+        </ol>
+
+        <div class="cta-buttons">
+            <a href="{{ job.url }}" target="_blank" class="btn primary">Apply Now</a>
+        </div>
+    </div>
+    </div>
+    {% empty %}
+        <p>No jobs found.</p>
+    {% endfor %}
+    {% if page.has_other_pages %}
+        <div class="pager">
+            {% if page.has_previous %}
+                <a href="?page={{ page.previous_page_number }}">Prev</a>
+            {% endif %}
+
+            <span>Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+
+            {% if page.has_next %}
+                <a href="?page={{ page.next_page_number }}">Next</a>
+            {% endif %}
+        </div>
+    {% endif %}
 </div>

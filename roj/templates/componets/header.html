@@ -2,9 +2,11 @@
 <header class="header">
     <div class="logo">Rojgar</div>
 
-    <div class="search-container">
-        <input type="search" id="search" placeholder="Search for jobs" />
+    <div><form class="search-container" action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <input type="search" id="search" placeholder="Search for jobs" name="search"  value="{{ search|default_if_none:'' }}"/>
         <button type="submit" aria-label="Search">&#128269;</button>
+        </form>
     </div>
     <button id="menuToggle" class="hamburger" aria-label="Toggle menu" onclick="openmenu()">
         &#9776;
@@ -22,7 +24,7 @@
             </h2>
         </div>
         <ul>
-            <li><a href="#profile">Jobs</a></li>
+            <li><a href="{% url 'profile' %}">Jobs</a></li>
             <li><a href="#dashborad">Contact</a></li>
             <li><a href="{% url 'logout' %}">logout</a></li>
             <li><a href="#myconnection">myconnection</a></li>
