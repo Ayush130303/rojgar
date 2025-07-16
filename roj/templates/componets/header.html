@@ -1,6 +1,6 @@
 {% load static %}
 <header class="header">
-    <div class="logo">Rojgar</div>
+    <div class="logo"><a href="{% url 'index' %}" class="logo" style="text-decoration: none;">Rojgar</a></div>
 
     <div><form class="search-container" action="{% url 'index' %}" method="post">
         {% csrf_token %}
@@ -24,10 +24,10 @@
             </h2>
         </div>
         <ul>
-            <li><a href="{% url 'profile' %}">Jobs</a></li>
+            <li><a href="{% url 'profile' %}">Saved_Jobs</a></li>
             <li><a href="#dashborad">Contact</a></li>
             <li><a href="{% url 'logout' %}">logout</a></li>
-            <li><a href="#myconnection">myconnection</a></li>
+            <li><a href="#myconnection">Posts</a></li>
         </ul>
     </nav>
 </header>

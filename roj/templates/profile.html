@@ -9,6 +9,35 @@
 </head>
 <body>
     {% include 'componets/header.html' %}
+    <h2>{{ request.user.username }}'s Saved Jobs</h2>
+
+    {% if job %}
+    <div class="container">
+        {% for saved in job %}
+        <div class="cards">
+            <div class="howtouse card">
+                <h3>{{ saved.jobid.title }} at {{ saved.jobid.company }}</h3>
+                <p>Saved on: {{ saved.saved_at }}</p>
+
+                    <ol>
+                        {% for tag in saved.jobid.tags %}
+                            <li>{{ tag }}</li>
+                        {% endfor %}
+                    </ol>
+
+            <div class="cta-buttons">
+                <a href="{{ saved.jobid.url }}" target="_blank" class="btn primary">Apply Now</a>
+                <a href="{% url 'delete_job' saved.id %}" class="btn secondary" style="background-color: red; color:aliceblue">Delete</a>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>No saved jobs yet.</p>
+{% endif %}
+
     {% include 'componets/footer.html' %}
 </body>
 </html>

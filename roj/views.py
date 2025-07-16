@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout,get_user_model
 from django.contrib import messages   
@@ -82,6 +82,23 @@ def user_logout(request):
 
 @login_required
 
+def add_profile(request, jobid):
+    user = request.user
+    profile, _ = Profile.objects.get_or_create(user=user)
+
+    job = get_object_or_404(Job, id=jobid)
+
+    if not Savedpost.objects.filter(profile=profile, jobid=job).exists():
+        Savedpost.objects.create(profile=profile, jobid=job)
+
+    return redirect('index')  
+
 def profile(request):
-    # job=Job.objects.all()
-    return render(request,'profile.html')
+    user = request.user
+    profile = get_object_or_404(Profile, user=user)
+    jobs = Savedpost.objects.filter(profile=profile)
+    return render(request, 'profile.html', {'job': jobs})
+
+def delete_job(request,id):
+    Savedpost.objects.filter(id=id).delete()
+    return redirect ('profile')
