@@ -10,6 +10,8 @@ body {
     align-items: center;
     background-color: #283E4A;
     padding: 1.2rem;
+    position: relative;
+    z-index: 100;
 }
 
 /* ---------- LOGO ---------- */
@@ -32,6 +34,7 @@ body {
     flex: 1;
     max-width: 500px;
     margin-top: 0.5rem;
+    transition: all 0.3s ease;
 }
 
 .search-container input[type="search"] {
@@ -50,6 +53,20 @@ body {
     color: #58a6ff;
     font-size: 1.2rem;
     cursor: pointer;
+}
+
+/* Expanded Search (on toggle) */
+.search-container.expanded {
+    position: absolute;
+    top: 1.2rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 999;
+    width: calc(100% - 2rem);
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* ---------- HAMBURGER ---------- */
@@ -279,35 +296,8 @@ body {
     background-color: #c9d6e4;
 }
 
-/* ---------- MEDIA QUERIES FOR RESPONSIVENESS ---------- */
+/* ---------- MEDIA QUERIES ---------- */
 @media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .search-container {
-        width: 100%;
-    }
-
-    .card {
-        padding: 1.5rem;
-        font-size: 1rem;
-    }
-
-    .cards {
-        padding: 1.5rem 1rem;
-    }
-
-    .cta-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .search-container input[type="search"] {
-        font-size: 1rem;
-    }
-
     .header {
         flex-direction: column;
         align-items: flex-start;
@@ -322,6 +312,36 @@ body {
         margin-top: 0.5rem;
     }
 
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .search-container input[type="search"] {
+        font-size: 1rem;
+    }
+
+    .search-container button {
+        align-self: flex-end;
+        margin-top: 0.5rem;
+    }
+
+    .cards {
+        padding: 1.5rem 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .prof img {
         width: 6rem;
         height: 6rem;
@@ -330,20 +350,9 @@ body {
     .prof h2 {
         font-size: 1.2rem;
     }
-}
-@media (max-width: 768px) {
-    .search-container input[type="search"] {
-        width: 100%;
-        font-size: 1rem;
-    }
 
-    .search-container {
+    .footer-content {
         flex-direction: column;
-        align-items: stretch;
-    }
-
-    .search-container button {
-        align-self: flex-end;
-        margin-top: 0.5rem;
+        align-items: flex-start;
     }
 }
