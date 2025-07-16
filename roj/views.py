@@ -80,8 +80,8 @@ def user_logout(request):
     logout(request)
     return redirect('index')
 
-@login_required
 
+@login_required
 def add_profile(request, jobid):
     user = request.user
     profile, _ = Profile.objects.get_or_create(user=user)
